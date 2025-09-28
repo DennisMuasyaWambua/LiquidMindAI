@@ -32,19 +32,21 @@ export async function contextualChatbotPersonalization(
   return contextualChatbotPersonalizationFlow(input);
 }
 
-const getClientData = ai.defineTool({
-  name: 'getClientData',
-  description: 'Retrieves the 360-degree client data for a given client ID.',
-  inputSchema: z.object({
-    clientId: z.string().describe('The ID of the client.'),
-  }),
-  outputSchema: z.object({
-    products: z.array(z.string()).describe('List of products the client uses.'),
-    paymentHistory: z.string().describe('Summary of the client payment history.'),
-    recentIssues: z.array(z.string()).describe('List of recent issues reported by the client.'),
-    futureNeeds: z.string().describe('Summary of potential future needs of the client.'),
-  }),
-  async input => {
+const getClientData = ai.defineTool(
+  {
+    name: 'getClientData',
+    description: 'Retrieves the 360-degree client data for a given client ID.',
+    inputSchema: z.object({
+      clientId: z.string().describe('The ID of the client.'),
+    }),
+    outputSchema: z.object({
+      products: z.array(z.string()).describe('List of products the client uses.'),
+      paymentHistory: z.string().describe('Summary of the client payment history.'),
+      recentIssues: z.array(z.string()).describe('List of recent issues reported by the client.'),
+      futureNeeds: z.string().describe('Summary of potential future needs of the client.'),
+    }),
+  },
+  async (input) => {
     // TODO: Replace with actual data retrieval logic.
     // This is a placeholder implementation.
     return {
@@ -53,8 +55,8 @@ const getClientData = ai.defineTool({
       recentIssues: ['Issue 1', 'Issue 2'],
       futureNeeds: 'Interested in upgrading to a premium plan.',
     };
-  },
-});
+  }
+);
 
 const prompt = ai.definePrompt({
   name: 'contextualChatbotPersonalizationPrompt',
