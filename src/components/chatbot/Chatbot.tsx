@@ -21,7 +21,7 @@ export function Chatbot() {
       id: '1',
       role: 'assistant',
       content:
-        "Hello! I'm your personal AI assistant from ClarityFlow. How can I help you today?",
+        "Hello! I'm your personal AI assistant from LiquidMind AI. How can I help you today?",
     },
   ]);
   const [input, setInput] = useState('');
@@ -92,7 +92,7 @@ export function Chatbot() {
         id: '1',
         role: 'assistant',
         content:
-          "Hello! I'm your personal AI assistant from ClarityFlow. How can I help you today?",
+          "Hello! I'm your personal AI assistant from LiquidMind AI. How can I help you today?",
       },
     ]);
     setIsEscalated(false);

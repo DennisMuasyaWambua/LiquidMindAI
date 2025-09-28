@@ -17,7 +17,7 @@ export default function Home() {
           <BrainCircuit className="w-10 h-10" />
         </div>
         <h1 className="text-4xl md:text-5xl font-headline font-bold text-primary mb-2">
-          ClarityFlow AI
+          LiquidMind AI
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
           A smart, AI-powered platform for actionable business intelligence.

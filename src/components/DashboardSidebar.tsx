@@ -41,7 +41,7 @@ export function DashboardSidebar() {
             <BrainCircuit />
           </div>
           <h2 className="text-xl font-headline font-semibold text-sidebar-foreground group-data-[collapsible=icon]:hidden">
-            ClarityFlow AI
+            LiquidMind AI
           </h2>
         </div>
       </SidebarHeader>
@@ -94,7 +94,7 @@ export function DashboardSidebar() {
             </Avatar>
             <div className="flex flex-col group-data-[collapsible=icon]:hidden">
                 <p className="text-sm font-medium text-sidebar-foreground">Admin User</p>
-                <p className="text-xs text-sidebar-foreground/70">admin@clarityflow.ai</p>
+                <p className="text-xs text-sidebar-foreground/70">admin@liquidmind.ai</p>
             </div>
         </div>
       </SidebarFooter>

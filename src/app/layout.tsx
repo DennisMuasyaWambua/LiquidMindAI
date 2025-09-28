@@ -3,7 +3,7 @@ import { Toaster } from '@/components/ui/toaster';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'ClarityFlow AI',
+  title: 'LiquidMind AI',
   description: 'A smart, AI-powered platform for actionable business intelligence.',
 };
 
