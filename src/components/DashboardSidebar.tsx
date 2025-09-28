@@ -49,22 +49,20 @@ export function DashboardSidebar() {
         <SidebarMenu>
           {menuItems.map((item) => (
             <SidebarMenuItem key={item.href}>
-              <Link href={item.href} passHref legacyBehavior>
-                <SidebarMenuButton
-                  asChild
-                  isActive={
-                    item.href === '/dashboard'
-                      ? pathname === item.href
-                      : pathname.startsWith(item.href)
-                  }
-                  tooltip={{ children: item.label }}
-                >
-                  <a>
-                    <item.icon />
-                    <span>{item.label}</span>
-                  </a>
-                </SidebarMenuButton>
-              </Link>
+              <SidebarMenuButton
+                asChild
+                isActive={
+                  item.href === '/dashboard'
+                    ? pathname === item.href
+                    : pathname.startsWith(item.href)
+                }
+                tooltip={{ children: item.label }}
+              >
+                <Link href={item.href}>
+                  <item.icon />
+                  <span>{item.label}</span>
+                </Link>
+              </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
         </SidebarMenu>
@@ -72,24 +70,20 @@ export function DashboardSidebar() {
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-             <Link href="#" passHref legacyBehavior>
-              <SidebarMenuButton asChild tooltip={{ children: 'Settings' }}>
-                <a>
-                  <Settings />
-                  <span>Settings</span>
-                </a>
-              </SidebarMenuButton>
-            </Link>
+            <SidebarMenuButton asChild tooltip={{ children: 'Settings' }}>
+              <Link href="#">
+                <Settings />
+                <span>Settings</span>
+              </Link>
+            </SidebarMenuButton>
           </SidebarMenuItem>
            <SidebarMenuItem>
-             <Link href="/" passHref legacyBehavior>
-              <SidebarMenuButton asChild tooltip={{ children: 'Logout' }}>
-                <a>
-                  <LogOut />
-                  <span>Logout</span>
-                </a>
-              </SidebarMenuButton>
-            </Link>
+            <SidebarMenuButton asChild tooltip={{ children: 'Logout' }}>
+              <Link href="/">
+                <LogOut />
+                <span>Logout</span>
+              </Link>
+            </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
 
