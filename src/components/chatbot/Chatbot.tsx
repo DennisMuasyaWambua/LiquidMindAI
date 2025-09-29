@@ -14,6 +14,8 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Send, User, Bot, RefreshCcw, AlertTriangle } from 'lucide-react';
 import { ChatMessage, type Message } from './ChatMessage';
 import { contextualChatbotPersonalization } from '@/ai/flows/contextual-chatbot-personalization';
+import faqs from '@/lib/faqs.json';
+import { FaqBadges } from './FaqBadges';
 
 export function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([
@@ -27,6 +29,7 @@ export function Chatbot() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isEscalated, setIsEscalated] = useState(false);
+  const [showFaqs, setShowFaqs] = useState(true);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -38,10 +41,26 @@ export function Chatbot() {
     }
   }, [messages]);
 
+  const handleFaqClick = (question: string, answer: string) => {
+    setShowFaqs(false);
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      role: 'user',
+      content: question,
+    };
+    const assistantMessage: Message = {
+      id: (Date.now() + 1).toString(),
+      role: 'assistant',
+      content: answer,
+    };
+    setMessages((prev) => [...prev, userMessage, assistantMessage]);
+  };
+
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
 
+    setShowFaqs(false);
     const userMessage: Message = {
       id: Date.now().toString(),
       role: 'user',
@@ -96,6 +115,7 @@ export function Chatbot() {
       },
     ]);
     setIsEscalated(false);
+    setShowFaqs(true);
   }
 
   return (
@@ -137,6 +157,7 @@ export function Chatbot() {
                 isLoading
               />
             )}
+             {showFaqs && <FaqBadges faqs={faqs.faqs} onFaqClick={handleFaqClick} />}
           </div>
         </ScrollArea>
       </CardContent>

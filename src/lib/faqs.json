@@ -1,0 +1,52 @@
+{
+  "faqs": [
+    {
+      "question": "How can I view my contract details on LiquidmindAI?",
+      "answer": "Navigate to the Contracts module in your dashboard. You will see the contract value, billing cycle, renewal date, and MRR in USD."
+    },
+    {
+      "question": "What does MRR mean in my billing breakdown?",
+      "answer": "MRR (Monthly Recurring Revenue) represents the normalized monthly revenue from your active contracts. It is automatically calculated from your billing cycle."
+    },
+    {
+      "question": "How do I check my current billing cycle?",
+      "answer": "Go to Billing \u2192 Billing Cycle. The system will display whether your subscription is monthly, quarterly, or annual."
+    },
+    {
+      "question": "Where can I see the status of my payments?",
+      "answer": "The Billing Status tab shows whether your invoices are Paid, Pending, or Overdue. You will also receive automated alerts for overdue invoices."
+    },
+    {
+      "question": "How do I raise a support ticket when I experience downtime?",
+      "answer": "In the Complaints & Support module, click 'Raise Ticket,' provide a description of the downtime, and attach any technical logs. A ticket ID will be generated for tracking."
+    },
+    {
+      "question": "Can I view the history of tickets I have raised?",
+      "answer": "Yes, under Ticket History, you can view all previously raised tickets, their timestamps, root cause analysis, and resolution notes from our engineers."
+    },
+    {
+      "question": "What kind of downtime alerts will I receive?",
+      "answer": "You will receive real-time alerts for planned maintenance, unplanned outages, or service degradation via email and SMS notifications."
+    },
+    {
+      "question": "How can I be notified about contract expiry?",
+      "answer": "Contract alerts are automatically sent 30, 14, and 7 days before expiry. You can also enable push notifications in your settings."
+    },
+    {
+      "question": "What products or services does LiquidmindAI provide?",
+      "answer": "We provide connectivity solutions such as Dedicated Internet, Last Mile Access, MPLS services, and managed cloud solutions. Your subscribed products are listed under 'My Products.'"
+    },
+    {
+      "question": "Can I download my invoices and contract reports?",
+      "answer": "Yes, invoices and contract summaries can be exported in PDF or Excel format from the Billing & Contracts module."
+    },
+    {
+      "question": "How do I escalate an unresolved complaint?",
+      "answer": "If a ticket remains unresolved beyond the SLA, you can escalate it directly from the Ticket History page. The system will notify a senior engineer for priority handling."
+    },
+    {
+      "question": "Can the dashboard predict possible downtimes?",
+      "answer": "Yes, predictive analytics is applied on past complaint data and network performance metrics to forecast potential service disruptions."
+    }
+  ]
+}
