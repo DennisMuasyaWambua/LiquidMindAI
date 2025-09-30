@@ -13,7 +13,6 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Send, User, Bot, RefreshCcw, AlertTriangle } from 'lucide-react';
 import { ChatMessage, type Message } from './ChatMessage';
-import { contextualChatbotPersonalization } from '@/ai/flows/contextual-chatbot-personalization';
 import faqs from '@/lib/faqs.json';
 import { FaqBadges } from './FaqBadges';
 
@@ -72,25 +71,36 @@ export function Chatbot() {
     setIsLoading(true);
 
     try {
-        const result = await contextualChatbotPersonalization({
-            clientId: '2', // Hardcoded client ID for demonstration
-            userQuery: input,
-        });
-        const assistantMessage: Message = {
-            id: (Date.now() + 1).toString(),
-            role: 'assistant',
-            content: result.response,
-        };
-        setMessages((prev) => [...prev, assistantMessage]);
+      const response = await fetch('https://whatsappinventoryragbot-production.up.railway.app/api/chat/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query: input }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('API response was not ok.');
+      }
+      
+      const result = await response.json();
+      
+      const assistantMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: result.response || "I'm sorry, I couldn't find an answer to that.",
+      };
+      setMessages((prev) => [...prev, assistantMessage]);
     } catch (error) {
-        const errorMessage: Message = {
-            id: (Date.now() + 1).toString(),
-            role: 'assistant',
-            content: "Sorry, I'm having trouble connecting. Please try again later.",
-        };
-        setMessages((prev) => [...prev, errorMessage]);
+      console.error("Error calling chat API:", error);
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: "Sorry, I'm having trouble connecting. Please try again later.",
+      };
+      setMessages((prev) => [...prev, errorMessage]);
     } finally {
-        setIsLoading(false);
+      setIsLoading(false);
     }
   };
   
