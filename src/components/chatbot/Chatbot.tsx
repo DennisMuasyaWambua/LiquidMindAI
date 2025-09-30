@@ -10,11 +10,12 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Send, User, Bot, RefreshCcw, AlertTriangle } from 'lucide-react';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Send, Bot, RefreshCcw, AlertTriangle } from 'lucide-react';
 import { ChatMessage, type Message } from './ChatMessage';
 import faqs from '@/lib/faqs.json';
 import { FaqBadges } from './FaqBadges';
+import { contextualChatbotPersonalization } from '@/ai/flows/contextual-chatbot-personalization';
 
 export function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([
@@ -67,24 +68,16 @@ export function Chatbot() {
     };
 
     setMessages((prev) => [...prev, userMessage]);
+    const currentInput = input;
     setInput('');
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://whatsappinventoryragbot-production.up.railway.app/api/chat/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ query: input }),
+      const result = await contextualChatbotPersonalization({
+        clientId: 'anonymous', // Or a real client ID if available
+        userQuery: currentInput,
       });
-      
-      if (!response.ok) {
-        throw new Error('API response was not ok.');
-      }
-      
-      const result = await response.json();
-      
+
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
@@ -92,7 +85,7 @@ export function Chatbot() {
       };
       setMessages((prev) => [...prev, assistantMessage]);
     } catch (error) {
-      console.error("Error calling chat API:", error);
+      console.error("Error calling chat flow:", error);
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
